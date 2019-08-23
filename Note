@@ -1,1 +1,17 @@
 https://fontawesome.com
+https://clovertuan.github.io/
+http://lalala.lol/
+https://sharvaridesai.gitlab.io/hexo-theme-milan/
+
+https://www.iconfont.cn
+
+
+1. 先去比特虫网站做icon图标
+
+2. 图片放到hexo/source/img文件夹下
+
+3. 找到hexo\themes\modernist\layout_partial\head.ejs，设置为
+
+<% if (theme.favicon){ %>
+    <link rel="icon" href="/img/favicon.ico">
+  <% } %>
