@@ -22,23 +22,31 @@ att["Content-Type"] = 'application/octet-stream'
 att.add_header('Content-Disposition', 'attachment', filename='上海分公司.xlsx') #附件描述
 
 #构建发送与接收信息
-msgRoot=MIMEMultipart()                             #发送附件的方法定义为一个变量
-msgRoot.attach(MIMEText(content, 'html', 'utf-8'))  #发送附件的方法中嵌套发送正文的方法
-msgRoot['subject']=subject
-msgRoot['From']=sender
-msgRoot['To'] = ','.join(receivers)
-msgRoot.attach(att)                                 #添加附件到正文中
+message=MIMEMultipart()                             #发送附件的方法定义为一个变量
+message.attach(MIMEText(content, 'html', 'utf-8'))  #发送附件的方法中嵌套发送正文的方法
+message['subject']=subject
+message['From']=sender
+message['To'] = ','.join(receivers)
+message.attach(att)                                 #添加附件到正文中
 
-#SSL协议端口号要使用465
-smtp = smtplib.SMTP_SSL(mail_host, 465)
 
-#HELO 向服务器标识用户身份
-smtp.helo(mail_host)
-#服务器返回结果确认
-smtp.ehlo(mail_host)
-#登录邮箱服务器用户名和密码
-smtp.login(sender,mail_pass)
-print("Start send email...")
-smtp.sendmail(sender,receivers,msgRoot.as_string())
-smtp.quit()
-print("Send End！")
+#登录并发送邮件
+try:
+    #SSL协议端口号要使用465
+    smtp = smtplib.SMTP_SSL(mail_host, 465)
+    print('Connecting ...')
+    #HELO 向服务器标识用户身份
+    smtp.helo(mail_host)
+    #服务器返回结果确认
+    smtp.ehlo(mail_host)
+    #登录邮箱服务器用户名和密码
+    smtp.login(sender,mail_pass)
+    print('Loging ...')
+    #发送
+    smtp.sendmail(sender,receivers,message.as_string())
+    print('Sending ...')
+    #退出
+    smtp.quit()
+    print('Success')
+except smtplib.SMTPException as e:
+    print('error',e) #打印错误
