@@ -1,4 +1,3 @@
-
 import os
 import sys
 import time
@@ -49,10 +48,30 @@ footer = '''
 <p><img src="https://emailalina.oss-cn-beijing.aliyuncs.com/footer.jpg"></p>
 <p style="font-size:25px;font-weight:bold">高顿财税学院 | HR Dept</p>
 <p style="font-size:15px;font-weight:bold">Alina Zhang</p>
-<p>Tel：400-111-0518</p>
-<p>Mail：zhangling@goldenfinance.com.cn</p>
-<p>Web：www.goldenfinance.com.cn</p>
-<p>Add：上海市虹口区花园路171号A5高顿教育</p>
+<p>
+ <tr>
+    <strong>Tel：</strong>
+    <th>400-111-0518</th>
+ </tr>
+</p>
+<p>
+ <tr>
+    <strong>Mail：</strong>
+    <th>zhangling@goldenfinance.com.cn</th>
+ </tr>
+</p>
+<p>
+ <tr>
+    <strong>Web：</strong>
+    <a href="www.goldenfinance.com.cn">www.goldenfinance.com.cn</a>
+ </tr>
+</p>
+<p>
+ <tr>
+    <strong>Add：</strong>
+    <th>上海市虹口区花园路171号A5高顿教育</th>
+ </tr>
+</p>
 '''
 
 # 根据输入的CSV文件，获取通讯录人名和相应的邮箱地址
