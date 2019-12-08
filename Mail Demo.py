@@ -17,10 +17,10 @@ sender_name = u'Alina Zhang'  # 发件人
 
 attach_path = r'D:\File\attach'  # 附件所在文件夹
 attach_type = ".xlsx"  # 附件后缀名，即类型
-addrBook = r'D:\File\测试邮箱组.csv'  # 邮件地址通讯录
+addrBook = r'D:\File\邮箱.csv'  # 邮件地址通讯录
 
-year = 2019  # 年份，每次发送前修改
-attach_date = '201910' # 邮件主题后面的日期和附件后面的日期，每次发送前修改
+year = str(2019)  # 年份，每次发送前修改
+attach_date = '2019年10月' # 邮件主题后面的日期和附件后面的日期，每次发送前修改
 check_date = '2019年10月' # 邮件正文核对提成表的日期，每次发送前修改
 reply_date = '2019年11月10日' # 邮件正文最晚回复日期，每次发送前修改
 
@@ -28,7 +28,7 @@ reply_date = '2019年11月10日' # 邮件正文最晚回复日期，每次发送
 
 content = '''
 <p style="font-weight:bold">Dear：</p>
-<p>烦请核对附件2019年10月提成表。<br />
+<p>烦请核对附件check_date提成表。<br />
 如下请特别关注：<br />
 1、个人和团队进账数据<br />
 2、个人当月出单数，上月出单数，退款，计提点及提成<br />
@@ -37,7 +37,7 @@ content = '''
 5、团标，团队提成是否发放<br />
 </p>
 <p>
-请您最晚于2019年10月30日前回复，谢谢支持<br />
+请您最晚于reply_date前回复，谢谢支持<br />
 </p>
 '''
 mail_content = content.replace('check_date',check_date).replace('reply_date',reply_date)
@@ -143,9 +143,10 @@ def addAttch(attach_file):
     att.set_payload(open(attach_file, 'rb').read())
     # 此时的附件名称为****.xlsx，截取文件名
     att.add_header('Content-Disposition', 'attachment',
-                   filename=(attach_file.split("\\")[-1].split(".")[0] + '-' + attach_date + '.xlsx'))
+                   filename=('gbk','',attach_file.split("\\")[-1].split(".")[0] + '-' + attach_date + attach_type))
     encoders.encode_base64(att)
     return att
+
 
 # 发送邮件
 def mailSend():
