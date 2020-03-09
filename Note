@@ -19,3 +19,6 @@ http://www.freenom.com/en/index.html
 <% if (theme.favicon){ %>
     <link rel="icon" href="/img/favicon.ico">
   <% } %>
+
+
+https://jingyan.baidu.com/article/0a52e3f48af4b8bf62ed7214.html
